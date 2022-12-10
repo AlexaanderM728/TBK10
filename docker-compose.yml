@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  swarmtest:
+    image: swarmtest
+  restart: unless-stopped
+  ports:
+    - 80:80
+  healthcheck:
+      test: ["node", "memory-check.js", "ALLOCATED_MB"]
+      interval: 5s
+      retries: 3
+      start_period: 20s
+      timeout: 10s
